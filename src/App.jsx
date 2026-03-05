@@ -16,40 +16,33 @@ export default function App() {
   return (
     <>
       {/* NAV */}
-      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#0d1b2a] backdrop-blur-sm border-b border-[rgba(42,122,245,0.18)]">
+      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#0d1b2a] border-b border-[rgba(42,122,245,0.18)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <div className="shrink-0">
-                <img src="/logo.png" alt="Vector Digital" className="h-10 w-auto" />
-              </div>
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
+          <div className="flex h-20 items-center justify-between">
+            <div className="flex items-center gap-8">
+              <img src="/logo.png" alt="Vector Digital" className="h-14 w-auto shrink-0" />
+              <div className="hidden md:flex items-center gap-1">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-300 hover:bg-white/10 hover:text-white rounded-md px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap"
+                  >
+                    {item.name}
+                  </a>
+                ))}
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="ml-4 flex items-center md:ml-6">
-                <a
-                  href="https://cal.com/kmperkins85/vector-digital"
-                  className="bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors"
-                >
-                  Book a Call
-                </a>
-              </div>
+            <div className="hidden md:flex items-center">
+              <a
+                href="https://cal.com/kmperkins85/vector-digital"
+                className="bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-5 py-2.5 rounded-md text-sm font-semibold transition-colors whitespace-nowrap"
+              >
+                Book a Call
+              </a>
             </div>
-            <div className="-mr-2 flex md:hidden">
+            <div className="flex md:hidden">
               <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-none">
-                <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
                 <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
@@ -57,21 +50,21 @@ export default function App() {
             </div>
           </div>
         </div>
-        <DisclosurePanel className="md:hidden">
-          <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <DisclosurePanel className="md:hidden border-t border-[rgba(42,122,245,0.18)]">
+          <div className="space-y-1 px-3 pt-3 pb-4">
             {navigation.map((item) => (
               <DisclosureButton
                 key={item.name}
                 as="a"
                 href={item.href}
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white"
+                className="block rounded-md px-4 py-2.5 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white"
               >
                 {item.name}
               </DisclosureButton>
             ))}
             <a
               href="https://cal.com/kmperkins85/vector-digital"
-              className="block mt-1 bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-3 py-2 rounded-md text-base font-semibold transition-colors text-center"
+              className="block mt-2 bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-4 py-2.5 rounded-md text-base font-semibold transition-colors text-center"
             >
               Book a Call
             </a>
