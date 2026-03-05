@@ -1,11 +1,71 @@
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
+const navigation = [
+  { name: 'The Stack', href: '#stack' },
+  { name: 'Compare', href: '#compare' },
+  { name: 'Compliance', href: '#compliance' },
+  { name: 'Support', href: '#support' },
+]
+
 export default function App() {
   return (
     <>
       {/* NAV */}
-      <nav>
-        <div className="nav-logo"><img src="/logo.png" alt="Vector Digital" /></div>
-        <a href="https://cal.com/kmperkins85/vector-digital" className="nav-cta">Book a Call</a>
-      </nav>
+      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#0d1b2a]/95 backdrop-blur border-b border-[rgba(42,122,245,0.18)]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-10">
+              <img src="/logo.png" alt="Vector Digital" className="h-10 w-auto" />
+              <div className="hidden md:flex items-baseline gap-1">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-[#8a9bbf] hover:text-white rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <a
+                href="https://cal.com/kmperkins85/vector-digital"
+                className="bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+              >
+                Book a Call
+              </a>
+            </div>
+            <div className="-mr-2 flex md:hidden">
+              <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-[#8a9bbf] hover:text-white hover:bg-white/5 focus:outline-none">
+                <Bars3Icon className="block size-6 group-data-open:hidden" />
+                <XMarkIcon className="hidden size-6 group-data-open:block" />
+              </DisclosureButton>
+            </div>
+          </div>
+        </div>
+        <DisclosurePanel className="md:hidden border-t border-[rgba(42,122,245,0.18)]">
+          <div className="space-y-1 px-4 py-3">
+            {navigation.map((item) => (
+              <DisclosureButton
+                key={item.name}
+                as="a"
+                href={item.href}
+                className="block rounded-md px-3 py-2 text-sm font-medium text-[#8a9bbf] hover:text-white hover:bg-white/5"
+              >
+                {item.name}
+              </DisclosureButton>
+            ))}
+            <a
+              href="https://cal.com/kmperkins85/vector-digital"
+              className="block mt-2 bg-[#2a7af5] hover:bg-[#1a66e0] text-white px-3 py-2 rounded-md text-sm font-semibold transition-colors text-center"
+            >
+              Book a Call
+            </a>
+          </div>
+        </DisclosurePanel>
+      </Disclosure>
 
       {/* HERO */}
       <section className="hero">
@@ -176,7 +236,7 @@ export default function App() {
       </section>
 
       {/* COMPARISON */}
-      <section className="comparison">
+      <section className="comparison" id="compare">
         <div className="section-label">How We Compare</div>
         <div className="section-title">Vector Stack vs. Big Tech</div>
         <p className="section-sub">See how a unified sovereign stack stacks up against the fragmented status quo.</p>
@@ -245,7 +305,7 @@ export default function App() {
       </section>
 
       {/* SUPPORT */}
-      <section className="support">
+      <section className="support" id="support">
         <div className="support-inner">
           <div>
             <div className="section-label">One Support Line</div>
@@ -298,7 +358,7 @@ export default function App() {
       </section>
 
       {/* COMPLIANCE */}
-      <section className="compliance-section">
+      <section className="compliance-section" id="compliance">
         <div className="compliance-inner">
           <div className="section-label">Compliance Ready</div>
           <div className="section-title">Built for regulated industries from day one.</div>

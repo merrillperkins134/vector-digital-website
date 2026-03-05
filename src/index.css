@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
     --navy: #0d1b2a;
     --navy2: #112236;
@@ -29,39 +31,6 @@ a {
     text-decoration: none;
 }
 
-/* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 6%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(13, 27, 42, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-}
-
-.nav-logo img {
-    height: 72px;
-    width: auto;
-    display: block;
-}
-
-.nav-cta {
-    background: var(--blue);
-    color: #fff;
-    padding: 0.55rem 1.3rem;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: background 0.2s;
-}
-
-.nav-cta:hover {
-    background: #1a66e0;
-}
 
 /* HERO */
 .hero {
