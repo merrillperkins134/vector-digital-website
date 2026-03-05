@@ -55,8 +55,8 @@ const complianceBadges = [
 function Tag({ label, type }) {
   const base = 'text-[0.7rem] font-semibold px-2 py-0.5 rounded border'
   const styles = type === 'c'
-    ? `${base} bg-[rgba(44,62,80,0.1)] text-[#2c3e50] border-[rgba(44,62,80,0.25)]`
-    : `${base} bg-[rgba(84,84,84,0.1)] text-[#545454] border-[rgba(84,84,84,0.2)]`
+    ? `${base} bg-[rgba(30,58,110,0.08)] text-[#1e3a6e] border-[rgba(30,58,110,0.2)]`
+    : `${base} bg-[rgba(100,116,139,0.1)] text-[#64748b] border-[rgba(100,116,139,0.2)]`
   return <span className={styles}>{label}</span>
 }
 
@@ -73,7 +73,7 @@ export default function App() {
     <div className="min-h-screen">
 
       {/* ── NAV ── */}
-      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#050a30] border-b border-white/10">
+      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#1e3a6e] border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-8">
@@ -81,18 +81,18 @@ export default function App() {
               <div className="hidden md:flex items-center gap-1">
                 {navLinks.map(item => (
                   <a key={item.name} href={item.href}
-                    className="text-[#b6b7b8] hover:bg-white/10 hover:text-white rounded-md px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap">
+                    className="text-white/70 hover:bg-white/10 hover:text-white rounded-md px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap">
                     {item.name}
                   </a>
                 ))}
               </div>
             </div>
             <a href="https://cal.com/kmperkins85/vector-digital"
-              className="hidden md:inline-flex bg-white hover:bg-[#ecf0f1] text-[#050a30] px-5 py-2.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap">
+              className="hidden md:inline-flex bg-white hover:bg-[#f0f4f9] text-[#1e3a6e] px-5 py-2.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap">
               Book a Call
             </a>
             <div className="flex md:hidden">
-              <DisclosureButton className="group inline-flex items-center justify-center rounded-md p-2 text-[#b6b7b8] hover:bg-white/10 hover:text-white focus:outline-none">
+              <DisclosureButton className="group inline-flex items-center justify-center rounded-md p-2 text-white/70 hover:bg-white/10 hover:text-white focus:outline-none">
                 <Bars3Icon className="block size-6 group-data-open:hidden" />
                 <XMarkIcon className="hidden size-6 group-data-open:block" />
               </DisclosureButton>
@@ -103,12 +103,12 @@ export default function App() {
           <div className="space-y-1 px-3 pt-3 pb-4">
             {navLinks.map(item => (
               <DisclosureButton key={item.name} as="a" href={item.href}
-                className="block rounded-md px-4 py-2.5 text-base font-medium text-[#b6b7b8] hover:bg-white/10 hover:text-white">
+                className="block rounded-md px-4 py-2.5 text-base font-medium text-white/70 hover:bg-white/10 hover:text-white">
                 {item.name}
               </DisclosureButton>
             ))}
             <a href="https://cal.com/kmperkins85/vector-digital"
-              className="block mt-2 bg-white hover:bg-[#ecf0f1] text-[#050a30] px-4 py-2.5 rounded-md text-base font-bold text-center transition-colors">
+              className="block mt-2 bg-white hover:bg-[#f0f4f9] text-[#1e3a6e] px-4 py-2.5 rounded-md text-base font-bold text-center transition-colors">
               Book a Call
             </a>
           </div>
@@ -116,39 +116,39 @@ export default function App() {
       </Disclosure>
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#050a30] px-[6%] pt-28 pb-20 text-center">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(182,183,184,0.08),transparent_70%)]" />
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#b6b7b8] mb-7">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-28 pb-20 text-center">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(30,58,110,0.06),transparent_70%)]" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#1e3a6e]/20 bg-[#1e3a6e]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#1e3a6e] mb-7">
           ⚡ Introducing Vector Stack
         </div>
-        <h1 className="mb-5 text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+        <h1 className="mb-5 text-5xl font-extrabold leading-tight tracking-tight text-[#1e3a6e] md:text-6xl">
           Your Data.<br />
-          <span className="text-[#b6b7b8]">Your Infrastructure.</span><br />
+          <span className="text-[#64748b]">Your Infrastructure.</span><br />
           Your Rules.
         </h1>
-        <p className="mx-auto mb-10 max-w-xl text-lg text-[#b6b7b8]">
+        <p className="mx-auto mb-10 max-w-xl text-lg text-[#64748b]">
           A complete, sovereign cloud stack that replaces Google Workspace, Microsoft 365, and a dozen other vendor subscriptions — with one integrated platform, one bill, and one support line.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a href="https://cal.com/kmperkins85/vector-digital"
-            className="inline-block rounded-lg bg-white px-8 py-3 text-base font-bold text-[#050a30] transition-all hover:bg-[#ecf0f1] hover:-translate-y-px">
+            className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
             See How It Works
           </a>
           <a href="#stack"
-            className="inline-block rounded-lg border border-white/25 px-8 py-3 text-base font-semibold text-white transition-colors hover:border-[#b6b7b8] hover:text-[#b6b7b8]">
+            className="inline-block rounded-lg border border-[#1e3a6e]/30 px-8 py-3 text-base font-semibold text-[#1e3a6e] transition-colors hover:border-[#1e3a6e] hover:bg-[#1e3a6e]/5">
             Explore the Stack ↓
           </a>
         </div>
       </section>
 
       {/* ── TRUST BAR ── */}
-      <div className="border-y border-white/10 bg-[#2c3e50] px-[6%] py-8 text-center">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#b6b7b8]">
+      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-8 text-center">
+        <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]/60">
           Compliance-ready for regulated industries
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           {complianceTags.map(t => (
-            <span key={t} className="rounded-md border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-wider text-white">
+            <span key={t} className="rounded-md border border-[#1e3a6e]/20 bg-white px-4 py-1.5 text-xs font-bold tracking-wider text-[#1e3a6e]">
               {t}
             </span>
           ))}
@@ -156,16 +156,16 @@ export default function App() {
       </div>
 
       {/* ── PROBLEM ── */}
-      <section className="bg-[#f4f4f4] px-[6%] py-20">
-        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#2c3e50]">The Problem</p>
-        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#050a30] md:text-4xl">
+      <section className="bg-white px-[6%] py-20">
+        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">The Problem</p>
+        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
           Big Tech wasn't built for your compliance requirements.
         </h2>
-        <p className="mb-12 max-w-xl text-lg text-[#545454]">
+        <p className="mb-12 max-w-xl text-lg text-[#64748b]">
           When you rely on Google, Microsoft, or AWS, you're renting access to your own data — and paying a premium to do it.
         </p>
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-xl border border-red-200 bg-white p-8">
+          <div className="rounded-xl border border-red-200 bg-[#f4f6f9] p-8">
             <p className="mb-5 text-xs font-bold uppercase tracking-wider text-red-500">❌ The Big Tech Way</p>
             {[
               ['💸', 'Multiple vendor subscriptions with compounding annual price increases'],
@@ -174,13 +174,13 @@ export default function App() {
               ['⚠️', 'Compliance gaps that require expensive third-party audits and add-ons'],
               ['🕸️', "Sprawling tools that don't integrate cleanly — fragmented operations"],
             ].map(([icon, text]) => (
-              <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#545454]">
+              <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#64748b]">
                 <span className="mt-0.5 shrink-0">{icon}</span><span>{text}</span>
               </div>
             ))}
           </div>
-          <div className="rounded-xl border border-[#2c3e50]/30 bg-white p-8">
-            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-[#2c3e50]">✦ The Vector Stack Way</p>
+          <div className="rounded-xl border border-[#1e3a6e]/20 bg-[#f4f6f9] p-8">
+            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-[#1e3a6e]">✦ The Vector Stack Way</p>
             {[
               ['✅', 'One flat, predictable cost — no per-seat surprises or hidden upsells'],
               ['✅', 'One support line — reach a real engineer, not a tier-1 ticket queue'],
@@ -188,7 +188,7 @@ export default function App() {
               ['✅', 'Compliance-aligned architecture built in from day one'],
               ['✅', 'Fully integrated stack — identity, comms, storage, and security unified'],
             ].map(([icon, text]) => (
-              <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#545454]">
+              <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#64748b]">
                 <span className="mt-0.5 shrink-0">{icon}</span><span>{text}</span>
               </div>
             ))}
@@ -197,21 +197,21 @@ export default function App() {
       </section>
 
       {/* ── STACK ── */}
-      <section className="bg-white px-[6%] py-20" id="stack">
-        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#2c3e50]">The Stack</p>
-        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#050a30] md:text-4xl">
+      <section className="bg-[#f4f6f9] px-[6%] py-20" id="stack">
+        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">The Stack</p>
+        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
           Everything your organization needs. Nothing you don't.
         </h2>
-        <p className="mb-12 max-w-xl text-lg text-[#545454]">
+        <p className="mb-12 max-w-xl text-lg text-[#64748b]">
           Vector Stack replaces 10+ vendor subscriptions with one cohesive, secure, compliance-ready platform.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {stackItems.map(item => (
             <div key={item.title}
-              className="rounded-xl border border-[#d9d9d9] bg-[#f4f4f4] p-6 transition-all hover:border-[#2c3e50] hover:shadow-md hover:-translate-y-0.5">
+              className="rounded-xl border border-[#d9e2ef] bg-white p-6 transition-all hover:border-[#1e3a6e] hover:shadow-md hover:-translate-y-0.5">
               <div className="mb-3 text-3xl">{item.icon}</div>
-              <h3 className="mb-2 text-[0.95rem] font-bold text-[#050a30]">{item.title}</h3>
-              <p className="mb-3 text-[0.82rem] leading-relaxed text-[#545454]">{item.desc}</p>
+              <h3 className="mb-2 text-[0.95rem] font-bold text-[#1e3a6e]">{item.title}</h3>
+              <p className="mb-3 text-[0.82rem] leading-relaxed text-[#64748b]">{item.desc}</p>
               <div className="flex flex-wrap gap-1.5">
                 {item.tags.map(t => <Tag key={t.label} {...t} />)}
               </div>
@@ -221,29 +221,29 @@ export default function App() {
       </section>
 
       {/* ── COMPARISON ── */}
-      <section className="bg-[#ecf0f1] px-[6%] py-20" id="compare">
-        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#2c3e50]">How We Compare</p>
-        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#050a30] md:text-4xl">Vector Stack vs. Big Tech</h2>
-        <p className="mb-12 max-w-xl text-lg text-[#545454]">
+      <section className="bg-white px-[6%] py-20" id="compare">
+        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">How We Compare</p>
+        <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">Vector Stack vs. Big Tech</h2>
+        <p className="mb-12 max-w-xl text-lg text-[#64748b]">
           See how a unified sovereign stack stacks up against the fragmented status quo.
         </p>
-        <div className="overflow-x-auto rounded-xl border border-[#d9d9d9] shadow-sm">
+        <div className="overflow-x-auto rounded-xl border border-[#d9e2ef] shadow-sm">
           <table className="w-full min-w-[600px] border-collapse">
             <thead>
-              <tr className="bg-[#2c3e50]">
-                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-[#b6b7b8]">Feature</th>
+              <tr className="bg-[#1e3a6e]">
+                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-white/60">Feature</th>
                 <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-white">Vector Stack</th>
-                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-[#b6b7b8]">Google Workspace</th>
-                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-[#b6b7b8]">Microsoft 365</th>
+                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-white/60">Google Workspace</th>
+                <th className="px-5 py-4 text-left text-xs font-bold uppercase tracking-wider text-white/60">Microsoft 365</th>
               </tr>
             </thead>
             <tbody className="bg-white">
               {comparisonRows.map((row, i) => (
-                <tr key={row.feature} className={`border-t border-[#eaeaea] hover:bg-[#f4f4f4] ${i % 2 === 1 ? 'bg-[#fafafa]' : ''}`}>
-                  <td className="px-5 py-4 text-sm text-[#545454]">{row.feature}</td>
-                  <td className="px-5 py-4 text-sm font-semibold text-[#050a30]"><CellIcon good={row.vg} /> {row.vector}</td>
-                  <td className="px-5 py-4 text-sm text-[#545454]"><CellIcon good={row.gg} /> {row.google}</td>
-                  <td className="px-5 py-4 text-sm text-[#545454]"><CellIcon good={row.mg} /> {row.ms}</td>
+                <tr key={row.feature} className={`border-t border-[#eaeaea] hover:bg-[#f4f6f9] ${i % 2 === 1 ? 'bg-[#fafafa]' : ''}`}>
+                  <td className="px-5 py-4 text-sm text-[#64748b]">{row.feature}</td>
+                  <td className="px-5 py-4 text-sm font-semibold text-[#1e3a6e]"><CellIcon good={row.vg} /> {row.vector}</td>
+                  <td className="px-5 py-4 text-sm text-[#64748b]"><CellIcon good={row.gg} /> {row.google}</td>
+                  <td className="px-5 py-4 text-sm text-[#64748b]"><CellIcon good={row.mg} /> {row.ms}</td>
                 </tr>
               ))}
             </tbody>
@@ -252,14 +252,14 @@ export default function App() {
       </section>
 
       {/* ── SUPPORT ── */}
-      <section className="bg-[#f4f4f4] px-[6%] py-20" id="support">
+      <section className="bg-[#f4f6f9] px-[6%] py-20" id="support">
         <div className="grid items-center gap-16 md:grid-cols-2">
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#2c3e50]">One Support Line</p>
-            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#050a30] md:text-4xl">
+            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">One Support Line</p>
+            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
               You call us. Not Microsoft. Not Google.
             </h2>
-            <p className="mb-8 max-w-sm text-lg text-[#545454]">
+            <p className="mb-8 max-w-sm text-lg text-[#64748b]">
               When something goes wrong — or you just have a question — you reach a real Vector Digital engineer who knows your environment.
             </p>
             <div className="flex flex-col gap-5">
@@ -269,25 +269,25 @@ export default function App() {
                 ['💰', 'No Premium Support Upsells',   "Support is included. We don't charge more for you to talk to a human."],
               ].map(([icon, title, desc]) => (
                 <div key={title} className="flex items-start gap-4">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d9d9d9] bg-white text-base shadow-sm">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d9e2ef] bg-white text-base shadow-sm">
                     {icon}
                   </div>
                   <div>
-                    <h4 className="mb-0.5 text-[0.95rem] font-bold text-[#050a30]">{title}</h4>
-                    <p className="text-sm text-[#545454]">{desc}</p>
+                    <h4 className="mb-0.5 text-[0.95rem] font-bold text-[#1e3a6e]">{title}</h4>
+                    <p className="text-sm text-[#64748b]">{desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="rounded-2xl border border-[#d9d9d9] bg-white p-10 text-center shadow-sm">
-            <div className="text-6xl font-black text-[#050a30] leading-none">1</div>
-            <p className="mt-2 text-sm text-[#545454]">vendor. One relationship. One bill.</p>
+          <div className="rounded-2xl border border-[#d9e2ef] bg-white p-10 text-center shadow-sm">
+            <div className="text-6xl font-black text-[#1e3a6e] leading-none">1</div>
+            <p className="mt-2 text-sm text-[#64748b]">vendor. One relationship. One bill.</p>
             <div className="mt-8 flex justify-center gap-10 border-t border-[#eaeaea] pt-8">
               {[['24/7', 'Monitoring'], ['16+', 'Integrated Tools'], ['0', 'Data Breaches']].map(([num, lbl]) => (
                 <div key={lbl} className="text-center">
-                  <div className="text-3xl font-extrabold text-[#050a30]">{num}</div>
-                  <div className="mt-0.5 text-xs text-[#545454]">{lbl}</div>
+                  <div className="text-3xl font-extrabold text-[#1e3a6e]">{num}</div>
+                  <div className="mt-0.5 text-xs text-[#64748b]">{lbl}</div>
                 </div>
               ))}
             </div>
@@ -296,20 +296,20 @@ export default function App() {
       </section>
 
       {/* ── COMPLIANCE ── */}
-      <section className="bg-[#2c3e50] px-[6%] py-20 text-center" id="compliance">
+      <section className="bg-[#e8eef5] px-[6%] py-20 text-center" id="compliance">
         <div className="mx-auto max-w-2xl">
-          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#b6b7b8]">Compliance Ready</p>
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Compliance Ready</p>
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
             Built for regulated industries from day one.
           </h2>
-          <p className="mx-auto max-w-xl text-lg text-[#b6b7b8]">
+          <p className="mx-auto max-w-xl text-lg text-[#64748b]">
             Vector Stack is architected to support the strictest regulatory frameworks — not retrofitted to meet them after the fact.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             {complianceBadges.map(b => (
-              <div key={b.name} className="rounded-xl border border-white/15 bg-[#050a30] px-7 py-5">
-                <div className="text-lg font-extrabold text-white">{b.name}</div>
-                <div className="mt-1 text-xs text-[#b6b7b8]">{b.desc}</div>
+              <div key={b.name} className="rounded-xl border border-[#1e3a6e]/20 bg-white px-7 py-5 shadow-sm">
+                <div className="text-lg font-extrabold text-[#1e3a6e]">{b.name}</div>
+                <div className="mt-1 text-xs text-[#64748b]">{b.desc}</div>
               </div>
             ))}
           </div>
@@ -317,23 +317,23 @@ export default function App() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="relative overflow-hidden bg-[#050a30] px-[6%] py-24 text-center">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_100%,rgba(182,183,184,0.08),transparent_70%)]" />
-        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#b6b7b8]">Get Started</p>
-        <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] py-24 text-center">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_100%,rgba(30,58,110,0.06),transparent_70%)]" />
+        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Get Started</p>
+        <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1e3a6e] md:text-5xl">
           Ready to leave Big Tech behind?
         </h2>
-        <p className="mx-auto mb-10 max-w-md text-lg text-[#b6b7b8]">
+        <p className="mx-auto mb-10 max-w-md text-lg text-[#64748b]">
           Book a free discovery call and we'll show you exactly how Vector Stack maps to your organization's needs.
         </p>
         <a href="https://cal.com/kmperkins85/vector-digital"
-          className="inline-block rounded-lg bg-white px-8 py-3 text-base font-bold text-[#050a30] transition-all hover:bg-[#ecf0f1] hover:-translate-y-px">
+          className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
           Book a Free Call →
         </a>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 bg-[#050a30] px-[6%] py-6 text-sm text-[#b6b7b8]">
+      <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 bg-[#1e3a6e] px-[6%] py-6 text-sm text-white/60">
         <div>© 2026 Vector Digital, Inc. All rights reserved.</div>
         <div className="flex gap-6">
           <a href="https://vectordigital.io"                 className="hover:text-white transition-colors">vectordigital.io</a>
