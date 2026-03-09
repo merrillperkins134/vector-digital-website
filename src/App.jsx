@@ -296,40 +296,91 @@ export default function App() {
       </section>
 
       {/* ── COMPLIANCE ── */}
-      <section className="bg-[#e8eef5] px-[6%] py-20 text-center" id="compliance">
-        <div className="mx-auto max-w-2xl">
-          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Compliance Ready</p>
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
-            Built for regulated industries from day one.
-          </h2>
-          <p className="mx-auto max-w-xl text-lg text-[#64748b]">
-            Vector Stack is architected to support the strictest regulatory frameworks — not retrofitted to meet them after the fact.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            {complianceBadges.map(b => (
-              <div key={b.name} className="rounded-xl border border-[#1e3a6e]/20 bg-white px-7 py-5 shadow-sm">
-                <div className="text-lg font-extrabold text-[#1e3a6e]">{b.name}</div>
-                <div className="mt-1 text-xs text-[#64748b]">{b.desc}</div>
+      <section className="bg-[#e8eef5] px-[6%] py-20" id="compliance">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Compliance Ready</p>
+              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
+                Built for regulated industries from day one.
+              </h2>
+              <p className="text-lg text-[#64748b]">
+                Vector Stack is architected to support strict regulatory frameworks instead of retrofitting controls after deployment.
+                Every layer, from identity to storage to monitoring, is designed with auditability in mind.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {[
+                  ['Audit-Ready Controls', 'Policy enforcement, access logs, and traceable change history.'],
+                  ['Data Residency First', 'Infrastructure ownership and region-aware deployment models.'],
+                  ['Continuous Security Ops', '24/7 monitoring, endpoint protection, and response workflows.'],
+                ].map(([title, desc]) => (
+                  <div key={title} className="rounded-xl border border-[#1e3a6e]/15 bg-white/80 p-4 shadow-sm">
+                    <h3 className="text-sm font-bold text-[#1e3a6e]">{title}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-[#64748b]">{desc}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {complianceBadges.map(b => (
+                <div key={b.name} className="rounded-xl border border-[#1e3a6e]/20 bg-white px-7 py-5 shadow-sm">
+                  <div className="text-lg font-extrabold text-[#1e3a6e]">{b.name}</div>
+                  <div className="mt-1 text-xs text-[#64748b]">{b.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] py-24 text-center">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] py-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_100%,rgba(30,58,110,0.06),transparent_70%)]" />
-        <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Get Started</p>
-        <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1e3a6e] md:text-5xl">
-          Ready to leave Big Tech behind?
-        </h2>
-        <p className="mx-auto mb-10 max-w-md text-lg text-[#64748b]">
-          Book a free discovery call and we'll show you exactly how Vector Stack maps to your organization's needs.
-        </p>
-        <a href="https://cal.com/kmperkins85/vector-digital"
-          className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
-          Book a Free Call →
-        </a>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
+          <div>
+            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Get Started</p>
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1e3a6e] md:text-5xl">
+              Ready to leave Big Tech behind?
+            </h2>
+            <p className="mb-8 max-w-xl text-lg text-[#64748b]">
+              Book a free discovery call and we will map your current tools, identify compliance gaps, and show a practical migration path to Vector Stack.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                'Current vendor and cost review',
+                'Compliance controls gap assessment',
+                'Rollout timeline and support model',
+                'Custom implementation scope',
+              ].map(item => (
+                <div key={item} className="rounded-lg border border-[#1e3a6e]/15 bg-white/80 px-4 py-3 text-sm text-[#1e3a6e] shadow-sm">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-2xl border border-[#d9e2ef] bg-white p-8 shadow-md">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">What Happens Next</p>
+            <div className="mt-5 space-y-4">
+              {[
+                ['1', 'Discovery Call', 'Share goals, constraints, and current architecture.'],
+                ['2', 'Stack Blueprint', 'Receive a tailored stack and migration recommendation.'],
+                ['3', 'Launch Plan', 'Get timeline, ownership, and ongoing support details.'],
+              ].map(([step, title, desc]) => (
+                <div key={title} className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1e3a6e] text-sm font-bold text-white">{step}</div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1e3a6e]">{title}</h3>
+                    <p className="text-sm text-[#64748b]">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a href="https://cal.com/kmperkins85/vector-digital"
+              className="mt-8 inline-block w-full rounded-lg bg-[#1e3a6e] px-8 py-3 text-center text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
+              Book a Free Call →
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* ── FOOTER ── */}
