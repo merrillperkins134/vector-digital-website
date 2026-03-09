@@ -74,7 +74,7 @@ export default function App() {
 
       {/* ── NAV ── */}
       <Disclosure as="nav" className="sticky top-0 z-50 bg-[#1e3a6e] border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="px-[6%]">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-8">
               <img src="/logo.png" alt="Vector Digital" className="h-14 w-auto shrink-0" />
