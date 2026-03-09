@@ -116,42 +116,72 @@ export default function App() {
       </Disclosure>
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-28 pb-20 text-center">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-24 pb-16">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(30,58,110,0.06),transparent_70%)]" />
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#1e3a6e]/20 bg-[#1e3a6e]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#1e3a6e] mb-7">
-          ⚡ Introducing Vector Stack
-        </div>
-        <h1 className="mb-5 text-5xl font-extrabold leading-tight tracking-tight text-[#1e3a6e] md:text-6xl">
-          Your Data.<br />
-          <span className="text-[#64748b]">Your Infrastructure.</span><br />
-          Your Rules.
-        </h1>
-        <p className="mx-auto mb-10 max-w-xl text-lg text-[#64748b]">
-          A complete, sovereign cloud stack that replaces Google Workspace, Microsoft 365, and a dozen other vendor subscriptions — with one integrated platform, one bill, and one support line.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="https://cal.com/kmperkins85/vector-digital"
-            className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
-            See How It Works
-          </a>
-          <a href="#stack"
-            className="inline-block rounded-lg border border-[#1e3a6e]/30 px-8 py-3 text-base font-semibold text-[#1e3a6e] transition-colors hover:border-[#1e3a6e] hover:bg-[#1e3a6e]/5">
-            Explore the Stack ↓
-          </a>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#1e3a6e]/20 bg-[#1e3a6e]/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]">
+              ⚡ Introducing Vector Stack
+            </div>
+            <h1 className="mb-5 text-5xl font-extrabold leading-tight tracking-tight text-[#1e3a6e] md:text-6xl">
+              Your Data.<br />
+              <span className="text-[#64748b]">Your Infrastructure.</span><br />
+              Your Rules.
+            </h1>
+            <p className="mb-10 max-w-2xl text-lg text-[#64748b]">
+              A complete, sovereign cloud stack that replaces Google Workspace, Microsoft 365, and a dozen other vendor subscriptions with one integrated platform, one bill, and one support line.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://cal.com/kmperkins85/vector-digital"
+                className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
+                See How It Works
+              </a>
+              <a href="#stack"
+                className="inline-block rounded-lg border border-[#1e3a6e]/30 px-8 py-3 text-base font-semibold text-[#1e3a6e] transition-colors hover:border-[#1e3a6e] hover:bg-[#1e3a6e]/5">
+                Explore the Stack ↓
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-[#d9e2ef] bg-white p-8 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#1e3a6e]/60">Why Teams Switch</p>
+            <div className="mt-6 space-y-4">
+              {[
+                ['One Platform', 'Replace fragmented tools with a single integrated stack.'],
+                ['One Security Model', 'Apply consistent policies across identity, storage, and communications.'],
+                ['One Support Team', 'Work directly with engineers who know your environment.'],
+              ].map(([title, desc]) => (
+                <div key={title} className="rounded-lg border border-[#e3e9f2] bg-[#f9fbfe] px-4 py-3">
+                  <h3 className="text-sm font-bold text-[#1e3a6e]">{title}</h3>
+                  <p className="mt-1 text-sm text-[#64748b]">{desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7 grid grid-cols-3 gap-3 border-t border-[#eaeaea] pt-6 text-center">
+              {[['16+', 'Integrated Tools'], ['24/7', 'Security Ops'], ['1', 'Support Line']].map(([num, label]) => (
+                <div key={label}>
+                  <div className="text-2xl font-extrabold text-[#1e3a6e]">{num}</div>
+                  <div className="text-xs text-[#64748b]">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── TRUST BAR ── */}
-      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-8 text-center">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]/60">
-          Compliance-ready for regulated industries
-        </p>
-        <div className="flex flex-wrap justify-center gap-3">
+      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]/60">
+            Compliance-ready for regulated industries
+          </p>
+          <div className="flex flex-wrap gap-3">
           {complianceTags.map(t => (
             <span key={t} className="rounded-md border border-[#1e3a6e]/20 bg-white px-4 py-1.5 text-xs font-bold tracking-wider text-[#1e3a6e]">
               {t}
             </span>
           ))}
+          </div>
         </div>
       </div>
 
