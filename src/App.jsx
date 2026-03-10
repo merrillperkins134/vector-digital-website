@@ -170,7 +170,7 @@ export default function App() {
       </section>
 
       {/* ── TRUST BAR ── */}
-      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-8">
+      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-14">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]/60">
             Compliance-ready for regulated industries
