@@ -116,7 +116,7 @@ export default function App() {
       </Disclosure>
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-24 pb-16">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-24 pb-28">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(30,58,110,0.06),transparent_70%)]" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
@@ -170,7 +170,7 @@ export default function App() {
       </section>
 
       {/* ── TRUST BAR ── */}
-      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-14">
+      <div className="border-y border-[#d9e2ef] bg-[#e8eef5] px-[6%] py-16">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#1e3a6e]/60">
             Compliance-ready for regulated industries
