@@ -25,7 +25,7 @@ const stackItems = [
   { icon: '✍️', title: 'Digital Signature Management',   desc: "Legally binding e-signatures hosted in your environment — not DocuSign's servers.",                                  tags: [{ label: 'GLBA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
   { icon: '📋', title: 'Project Management',             desc: 'Kanban boards and task tracking built directly into your workspace environment.',                                     tags: [{ label: 'Sovereign', type: 's' }] },
   { icon: '📝', title: 'Note-Taking & Knowledge Base',   desc: 'Collaborative notes and internal documentation — your Notion alternative.',                                           tags: [{ label: 'Sovereign', type: 's' }] },
-  { icon: '🎓', title: 'Learning Management System',     desc: 'Full LMS for staff training, compliance education, and course delivery.',                                             tags: [{ label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { icon: '🎓', title: 'Learning Management System',     desc: 'Full LMS for staff training, compliance education, and course delivery.',                                             tags: [{ label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }], link: 'https://mgit-lms.vector-digital.workers.dev/' },
   { icon: '🛡️', title: '24/7 Security Monitoring & EDR', desc: 'Continuous threat detection, vulnerability scanning, endpoint security, and incident response.',                     tags: [{ label: 'HIPAA', type: 'c' }, { label: 'CMMC', type: 'c' }, { label: 'Sovereign', type: 's' }] },
   { icon: '🤖', title: 'Private AI Assistant',           desc: 'AI chat powered by leading models — hosted privately so your prompts and data never leave your environment.',         tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
   { icon: '🌍', title: 'Web Design & UI/UX Toolkit',     desc: 'Build and manage your web presence with professional design tools, fully hosted.',                                   tags: [{ label: 'Sovereign', type: 's' }] },
@@ -236,17 +236,24 @@ export default function App() {
           Vector Stack replaces 10+ vendor subscriptions with one cohesive, secure, compliance-ready platform.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {stackItems.map(item => (
-            <div key={item.title}
-              className="rounded-xl border border-[#d9e2ef] bg-white p-6 transition-all hover:border-[#1e3a6e] hover:shadow-md hover:-translate-y-0.5">
-              <div className="mb-3 text-3xl">{item.icon}</div>
-              <h3 className="mb-2 text-[0.95rem] font-bold text-[#1e3a6e]">{item.title}</h3>
-              <p className="mb-3 text-[0.82rem] leading-relaxed text-[#64748b]">{item.desc}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {item.tags.map(t => <Tag key={t.label} {...t} />)}
-              </div>
-            </div>
-          ))}
+          {stackItems.map(item => {
+            const Wrapper = item.link ? 'a' : 'div'
+            const wrapperProps = item.link ? { href: item.link, target: '_blank', rel: 'noopener noreferrer' } : {}
+            return (
+              <Wrapper key={item.title} {...wrapperProps}
+                className="rounded-xl border border-[#d9e2ef] bg-white p-6 transition-all hover:border-[#1e3a6e] hover:shadow-md hover:-translate-y-0.5 block no-underline">
+                <div className="mb-3 text-3xl">{item.icon}</div>
+                <h3 className="mb-2 text-[0.95rem] font-bold text-[#1e3a6e]">{item.title}</h3>
+                <p className="mb-3 text-[0.82rem] leading-relaxed text-[#64748b]">{item.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {item.tags.map(t => <Tag key={t.label} {...t} />)}
+                </div>
+                {item.link && (
+                  <div className="mt-3 text-xs font-semibold text-[#1e3a6e]">View Demo →</div>
+                )}
+              </Wrapper>
+            )
+          })}
         </div>
       </section>
 
