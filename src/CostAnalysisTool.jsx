@@ -443,6 +443,8 @@ export default function CostAnalysisTool() {
         </p>
         <a
           href="https://cal.com/kmperkins85/vector-digital"
+          rel="noopener noreferrer"
+          target="_blank"
           className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px"
         >
           Book a Free Call →
