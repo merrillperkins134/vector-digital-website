@@ -8,14 +8,16 @@ import {
   PhoneIcon, LightBulbIcon, CurrencyDollarIcon,
   XCircleIcon, PhoneArrowDownLeftIcon,
 } from '@heroicons/react/24/outline'
+import CostAnalysisTool from './CostAnalysisTool'
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
 const navLinks = [
   { name: 'VectorStack',  href: '#stack' },
-  { name: 'Compare',    href: '#compare' },
-  { name: 'Compliance', href: '#compliance' },
-  { name: 'Support',    href: '#support' },
+  { name: 'Compare',      href: '#compare' },
+  { name: 'Cost Analysis', href: '#analyze' },
+  { name: 'Compliance',   href: '#compliance' },
+  { name: 'Support',      href: '#support' },
 ]
 
 const complianceTags = ['HIPAA', 'FERPA', 'GLBA', 'SOC 2', 'CMMC']
@@ -292,6 +294,9 @@ export default function App() {
           </table>
         </div>
       </section>
+
+      {/* ── COST ANALYSIS TOOL ── */}
+      <CostAnalysisTool />
 
       {/* ── SUPPORT ── */}
       <section className="bg-[#f4f6f9] px-[6%] py-20" id="support">
