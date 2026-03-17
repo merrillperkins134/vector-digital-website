@@ -62,65 +62,105 @@ function formatCategory(cat) {
 
 // ── Row component ──────────────────────────────────────────────────────────
 
+const inputClass = 'w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10'
+
 function AnalysisRow({ row, onChange }) {
   const vendors = CATEGORY_VENDORS[row.category] || ['None', 'Other']
   const annualized = num(row.priceMonth) * num(row.users) * 12
 
   return (
-    <div className="grid grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] gap-3 items-center rounded-xl border border-[#d9e2ef] bg-white px-4 py-3 hover:border-[#1e3a6e]/30 transition-colors">
-      <div className="text-sm font-semibold text-[#1e3a6e] truncate" title={formatCategory(row.category)}>
-        {formatCategory(row.category)}
+    <div className="rounded-xl border border-[#d9e2ef] bg-white px-4 py-3 hover:border-[#1e3a6e]/30 transition-colors">
+      {/* ── Desktop: 6-column grid (xl+) ── */}
+      <div className="hidden xl:grid grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] gap-3 items-center">
+        <div className="text-sm font-semibold text-[#1e3a6e] truncate" title={formatCategory(row.category)}>
+          {formatCategory(row.category)}
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={`${inputClass} truncate`}>
+            {vendors.map(v => <option key={v} value={v}>{v}</option>)}
+          </select>
+          {row.vendor === 'Other' && (
+            <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={inputClass} />
+          )}
+        </div>
+        <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+        <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+        <div className="text-right pr-1">
+          <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
+          <div className="text-[0.7rem] text-[#64748b]">annual spend</div>
+        </div>
+        <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[38px] max-h-[100px]`} />
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <select
-          value={row.vendor}
-          onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })}
-          className="w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 truncate"
-        >
-          {vendors.map(v => <option key={v} value={v}>{v}</option>)}
-        </select>
-        {row.vendor === 'Other' && (
-          <input
-            type="text"
-            placeholder="Type vendor/app..."
-            value={row.otherVendor || ''}
-            onChange={e => onChange({ ...row, otherVendor: e.target.value })}
-            className="w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10"
-          />
-        )}
+      {/* ── Tablet: 2-column card (md–xl) ── */}
+      <div className="hidden md:block xl:hidden">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-sm font-bold text-[#1e3a6e]">{formatCategory(row.category)}</div>
+          <div className="text-right">
+            <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
+            <div className="text-[0.65rem] text-[#64748b]">annual spend</div>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Vendor / App</label>
+            <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={`${inputClass} truncate`}>
+              {vendors.map(v => <option key={v} value={v}>{v}</option>)}
+            </select>
+            {row.vendor === 'Other' && (
+              <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={`${inputClass} mt-1.5`} />
+            )}
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">$/User/Mo</label>
+              <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+            </div>
+            <div>
+              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Users</label>
+              <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+            </div>
+          </div>
+        </div>
+        <div className="mt-2">
+          <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[36px] max-h-[80px]`} />
+        </div>
       </div>
 
-      <input
-        type="text"
-        inputMode="decimal"
-        placeholder="0.00"
-        value={row.priceMonth}
-        onChange={e => onChange({ ...row, priceMonth: e.target.value })}
-        className="w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-right text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 tabular-nums"
-      />
-
-      <input
-        type="text"
-        inputMode="numeric"
-        placeholder="0"
-        value={row.users}
-        onChange={e => onChange({ ...row, users: e.target.value })}
-        className="w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-right text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 tabular-nums"
-      />
-
-      <div className="text-right pr-1">
-        <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
-        <div className="text-[0.7rem] text-[#64748b]">annual spend</div>
+      {/* ── Mobile: stacked card (<md) ── */}
+      <div className="md:hidden">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-sm font-bold text-[#1e3a6e]">{formatCategory(row.category)}</div>
+          <div className="text-right">
+            <div className="text-base font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
+            <div className="text-[0.65rem] text-[#64748b]">annual spend</div>
+          </div>
+        </div>
+        <div className="space-y-2">
+          <div>
+            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Vendor / App</label>
+            <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={inputClass}>
+              {vendors.map(v => <option key={v} value={v}>{v}</option>)}
+            </select>
+            {row.vendor === 'Other' && (
+              <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={`${inputClass} mt-1.5`} />
+            )}
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Price/User/Mo</label>
+              <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+            </div>
+            <div>
+              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Users</label>
+              <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
+            </div>
+          </div>
+          <div>
+            <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[36px] max-h-[80px]`} />
+          </div>
+        </div>
       </div>
-
-      <textarea
-        placeholder="Notes..."
-        value={row.notes}
-        onChange={e => onChange({ ...row, notes: e.target.value })}
-        rows={1}
-        className="w-full rounded-lg border border-[#d9e2ef] bg-[#f9fbfe] px-3 py-2 text-sm text-[#64748b] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 resize-y min-h-[38px] max-h-[100px]"
-      />
     </div>
   )
 }
@@ -292,28 +332,28 @@ export default function CostAnalysisTool() {
     })
 
   return (
-    <section className="bg-white px-[6%] py-20" id="analyze">
+    <section className="bg-white px-[4%] py-12 sm:px-[6%] sm:py-20" id="analyze">
       <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">Cost Analysis</p>
-      <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
+      <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-[#1e3a6e] sm:text-3xl md:text-4xl">
         See what you're really spending.
       </h2>
-      <p className="mb-8 max-w-xl text-lg text-[#64748b]">
+      <p className="mb-8 max-w-xl text-base text-[#64748b] sm:text-lg">
         Enter your current software costs below to see how they add up — and how Vector Stack can replace them all with one predictable bill.
       </p>
 
       {/* ── Action buttons ── */}
-      <div className="mb-6 flex flex-wrap gap-3">
-        <button onClick={exportCSV} className="inline-flex items-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-4 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors">
-          <ArrowDownTrayIcon className="h-4 w-4" /> Export CSV
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+        <button onClick={exportCSV} className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-3 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors sm:px-4">
+          <ArrowDownTrayIcon className="h-4 w-4 shrink-0" /> <span>Export CSV</span>
         </button>
-        <button onClick={() => fileRef.current?.click()} className="inline-flex items-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-4 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors">
-          <ArrowUpTrayIcon className="h-4 w-4" /> Import CSV
+        <button onClick={() => fileRef.current?.click()} className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-3 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors sm:px-4">
+          <ArrowUpTrayIcon className="h-4 w-4 shrink-0" /> <span>Import CSV</span>
         </button>
-        <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-4 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors">
-          <PrinterIcon className="h-4 w-4" /> Print / PDF
+        <button onClick={() => window.print()} className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#d9e2ef] bg-white px-3 py-2.5 text-sm font-semibold text-[#1e3a6e] shadow-sm hover:border-[#1e3a6e]/40 hover:bg-[#f4f6f9] transition-colors sm:px-4">
+          <PrinterIcon className="h-4 w-4 shrink-0" /> <span>Print / PDF</span>
         </button>
-        <button onClick={clearAll} className="inline-flex items-center gap-2 rounded-lg border border-red-200 bg-white px-4 py-2.5 text-sm font-semibold text-red-500 shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors">
-          <TrashIcon className="h-4 w-4" /> Clear All
+        <button onClick={clearAll} className="inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-white px-3 py-2.5 text-sm font-semibold text-red-500 shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors sm:px-4">
+          <TrashIcon className="h-4 w-4 shrink-0" /> <span>Clear All</span>
         </button>
         <input ref={fileRef} type="file" accept=".csv" className="hidden" onChange={importCSV} />
       </div>
@@ -322,10 +362,10 @@ export default function CostAnalysisTool() {
       <div className="rounded-xl border border-[#d9e2ef] bg-[#f4f6f9] shadow-sm overflow-hidden">
 
         {/* Card header */}
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#d9e2ef] bg-white px-6 py-4">
+        <div className="flex flex-col gap-2 border-b border-[#d9e2ef] bg-white px-4 py-4 sm:px-6 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-4">
           <div>
             <div className="text-base font-extrabold text-[#1e3a6e] flex items-center gap-2">
-              <CalculatorIcon className="h-5 w-5" /> Customer Inventory + Spend
+              <CalculatorIcon className="h-5 w-5 shrink-0" /> Customer Inventory + Spend
             </div>
             <div className="mt-1 text-sm text-[#64748b]">Totals update instantly. Total App Cost is shown as annual spend.</div>
           </div>
@@ -335,31 +375,31 @@ export default function CostAnalysisTool() {
         </div>
 
         {/* Filter bar */}
-        <div className="flex flex-wrap items-center gap-3 border-b border-[#d9e2ef] bg-[#f9fbfe] px-6 py-3">
+        <div className="flex flex-col gap-2 border-b border-[#d9e2ef] bg-[#f9fbfe] px-4 py-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:px-6">
           <label className="text-[0.7rem] font-bold uppercase tracking-wider text-[#64748b]">Filter:</label>
-          <div className="relative">
+          <div className="relative flex-1 sm:flex-none">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748b]" />
             <input
               type="text"
               placeholder="Search categories, vendors, notes..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="rounded-lg border border-[#d9e2ef] bg-white pl-9 pr-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 w-64"
+              className="w-full rounded-lg border border-[#d9e2ef] bg-white pl-9 pr-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 sm:w-64"
             />
           </div>
-          <label className="text-[0.7rem] font-bold uppercase tracking-wider text-[#64748b] ml-2">Category:</label>
+          <label className="text-[0.7rem] font-bold uppercase tracking-wider text-[#64748b] sm:ml-2">Category:</label>
           <select
             value={filterCat}
             onChange={e => setFilterCat(e.target.value)}
-            className="rounded-lg border border-[#d9e2ef] bg-white px-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10"
+            className="w-full rounded-lg border border-[#d9e2ef] bg-white px-3 py-2 text-sm text-[#1e3a6e] outline-none focus:border-[#1e3a6e]/40 focus:ring-2 focus:ring-[#1e3a6e]/10 sm:w-auto"
           >
             <option value="">All Categories</option>
             {CATEGORIES.map(c => <option key={c} value={c}>{formatCategory(c)}</option>)}
           </select>
         </div>
 
-        {/* Column headers */}
-        <div className="grid grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] gap-3 bg-[#1e3a6e] px-10 py-3 text-[0.7rem] font-extrabold uppercase tracking-wider text-white/70">
+        {/* Column headers — desktop only */}
+        <div className="hidden xl:grid grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] gap-3 bg-[#1e3a6e] px-10 py-3 text-[0.7rem] font-extrabold uppercase tracking-wider text-white/70">
           <div>Category</div>
           <div>Vendor / App</div>
           <div>Price/User/Mo</div>
@@ -369,7 +409,7 @@ export default function CostAnalysisTool() {
         </div>
 
         {/* Data rows */}
-        <div className="space-y-2 p-4">
+        <div className="space-y-2 p-2 sm:p-4">
           {filteredWithIndex.map(({ row, idx }) => (
             <AnalysisRow
               key={row.category}
@@ -383,14 +423,14 @@ export default function CostAnalysisTool() {
         </div>
 
         {/* Footer bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#d9e2ef] bg-white px-6 py-4">
+        <div className="flex flex-col gap-3 border-t border-[#d9e2ef] bg-white px-4 py-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4 sm:px-6">
           <div className="flex flex-wrap gap-3 items-center">
-            <div className="rounded-full border border-[#1e3a6e]/20 bg-[#1e3a6e]/5 px-4 py-2 flex items-baseline gap-2 text-sm">
+            <div className="rounded-2xl sm:rounded-full border border-[#1e3a6e]/20 bg-[#1e3a6e]/5 px-4 py-2 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 text-sm w-full sm:w-auto text-center sm:text-left">
               <span className="text-[#64748b]">Grand Total (annualized):</span>
-              <span className="font-black text-[#1e3a6e] tabular-nums">{money(totalAnnual)}</span>
+              <span className="font-black text-[#1e3a6e] tabular-nums text-lg sm:text-sm">{money(totalAnnual)}</span>
             </div>
           </div>
-          <div className="flex flex-wrap gap-3 items-center text-xs text-[#64748b]">
+          <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-end text-xs text-[#64748b]">
             <span className="rounded-full border border-[#d9e2ef] px-3 py-1.5">
               Rows: <span className="font-bold text-[#1e3a6e]">{rows.length}</span>
             </span>
@@ -399,44 +439,44 @@ export default function CostAnalysisTool() {
       </div>
 
       {/* ── Summary cards ── */}
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-5 shadow-sm">
-          <div className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b]">Monthly Total</div>
-          <div className="mt-2 text-2xl font-black text-[#1e3a6e] tabular-nums">{money(totalAnnual / 12)}</div>
-          <div className="mt-1 text-xs text-[#64748b]">all rows combined</div>
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-4">
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-5">
+          <div className="text-[0.6rem] font-bold uppercase tracking-wider text-[#64748b] sm:text-[0.65rem]">Monthly Total</div>
+          <div className="mt-1.5 text-lg font-black text-[#1e3a6e] tabular-nums sm:mt-2 sm:text-2xl">{money(totalAnnual / 12)}</div>
+          <div className="mt-1 text-[0.65rem] text-[#64748b] sm:text-xs">all rows combined</div>
         </div>
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-5 shadow-sm">
-          <div className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b]">Avg Cost / User / Month</div>
-          <div className="mt-2 text-2xl font-black text-[#1e3a6e] tabular-nums">{totalUsers > 0 ? money((totalAnnual / 12) / totalUsers) : '$0.00'}</div>
-          <div className="mt-1 text-xs text-[#64748b]">across all active rows</div>
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-5">
+          <div className="text-[0.6rem] font-bold uppercase tracking-wider text-[#64748b] sm:text-[0.65rem]">Avg Cost / User / Mo</div>
+          <div className="mt-1.5 text-lg font-black text-[#1e3a6e] tabular-nums sm:mt-2 sm:text-2xl">{totalUsers > 0 ? money((totalAnnual / 12) / totalUsers) : '$0.00'}</div>
+          <div className="mt-1 text-[0.65rem] text-[#64748b] sm:text-xs">across all active rows</div>
         </div>
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-5 shadow-sm">
-          <div className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b]">Highest Spend Category</div>
-          <div className="mt-2 text-2xl font-black text-[#1e3a6e] truncate" title={formatCategory(topCat)}>{formatCategory(topCat)}</div>
-          <div className="mt-1 text-xs text-[#64748b]">{topAmt > 0 ? money(topAmt) + ' / year' : ''}</div>
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-5">
+          <div className="text-[0.6rem] font-bold uppercase tracking-wider text-[#64748b] sm:text-[0.65rem]">Top Spend Category</div>
+          <div className="mt-1.5 text-lg font-black text-[#1e3a6e] truncate sm:mt-2 sm:text-2xl" title={formatCategory(topCat)}>{formatCategory(topCat)}</div>
+          <div className="mt-1 text-[0.65rem] text-[#64748b] sm:text-xs">{topAmt > 0 ? money(topAmt) + ' / yr' : ''}</div>
         </div>
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-5 shadow-sm">
-          <div className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b]">Active Software Count</div>
-          <div className="mt-2 text-2xl font-black text-[#1e3a6e] tabular-nums">{activeCount}</div>
-          <div className="mt-1 text-xs text-[#64748b]">rows with cost &gt; $0</div>
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-5">
+          <div className="text-[0.6rem] font-bold uppercase tracking-wider text-[#64748b] sm:text-[0.65rem]">Active Software Count</div>
+          <div className="mt-1.5 text-lg font-black text-[#1e3a6e] tabular-nums sm:mt-2 sm:text-2xl">{activeCount}</div>
+          <div className="mt-1 text-[0.65rem] text-[#64748b] sm:text-xs">rows with cost &gt; $0</div>
         </div>
       </div>
 
       {/* ── Charts ── */}
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-sm font-extrabold text-[#1e3a6e]">Spend by Category</h3>
-          <canvas ref={pieRef} className="w-full" style={{ maxHeight: 300 }} />
-          <div id="pieLegendReact" className="flex flex-wrap gap-2 mt-4" />
+      <div className="mt-6 grid gap-4 sm:mt-8 sm:gap-6 md:grid-cols-2">
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-6">
+          <h3 className="mb-3 text-sm font-extrabold text-[#1e3a6e] sm:mb-4">Spend by Category</h3>
+          <canvas ref={pieRef} className="w-full" style={{ height: 220, maxHeight: 300 }} />
+          <div id="pieLegendReact" className="flex flex-wrap gap-1.5 mt-3 sm:gap-2 sm:mt-4" />
         </div>
-        <div className="rounded-xl border border-[#d9e2ef] bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-sm font-extrabold text-[#1e3a6e]">Top 10 Costs (Annualized)</h3>
-          <canvas ref={barRef} className="w-full" style={{ maxHeight: 300 }} />
+        <div className="rounded-xl border border-[#d9e2ef] bg-white p-4 shadow-sm sm:p-6">
+          <h3 className="mb-3 text-sm font-extrabold text-[#1e3a6e] sm:mb-4">Top 10 Costs (Annualized)</h3>
+          <canvas ref={barRef} className="w-full" style={{ height: 220, maxHeight: 300 }} />
         </div>
       </div>
 
       {/* ── CTA ── */}
-      <div className="mt-10 rounded-2xl border border-[#1e3a6e]/20 bg-[#f4f6f9] p-8 text-center">
+      <div className="mt-8 rounded-2xl border border-[#1e3a6e]/20 bg-[#f4f6f9] p-5 text-center sm:mt-10 sm:p-8">
         <h3 className="text-xl font-extrabold text-[#1e3a6e]">Ready to consolidate your stack?</h3>
         <p className="mt-2 mb-6 text-[#64748b]">
           Replace all of the above with Vector Stack — one platform, one bill, one support line.
