@@ -70,95 +70,83 @@ function AnalysisRow({ row, onChange }) {
 
   return (
     <div className="rounded-xl border border-[#d9e2ef] bg-white px-4 py-3 hover:border-[#1e3a6e]/30 transition-colors">
-      {/* ── Desktop: 6-column grid (xl+) ── */}
-      <div className="hidden xl:grid grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] gap-3 items-center">
-        <div className="text-sm font-semibold text-[#1e3a6e] truncate" title={formatCategory(row.category)}>
+      {/* Row header: category + annual total — always visible */}
+      <div className="flex items-center justify-between mb-3 xl:hidden">
+        <div className="text-sm font-bold text-[#1e3a6e]">{formatCategory(row.category)}</div>
+        <div className="text-right">
+          <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums md:text-sm">{money(annualized)}</div>
+          <div className="text-[0.65rem] text-[#64748b]">annual spend</div>
+        </div>
+      </div>
+
+      {/* Fields: single set of inputs, rearranged by breakpoint */}
+      <div className="
+        grid gap-2
+        grid-cols-1
+        md:grid-cols-[1fr_1fr] md:gap-3
+        xl:grid-cols-[2fr_1.6fr_1fr_0.7fr_1fr_1.2fr] xl:gap-3 xl:items-center
+      ">
+        {/* Category — only visible in desktop grid */}
+        <div className="hidden xl:block text-sm font-semibold text-[#1e3a6e] truncate" title={formatCategory(row.category)}>
           {formatCategory(row.category)}
         </div>
-        <div className="flex flex-col gap-1.5">
-          <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={`${inputClass} truncate`}>
+
+        {/* Vendor */}
+        <div>
+          <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block xl:hidden">Vendor / App</label>
+          <select
+            value={row.vendor}
+            onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })}
+            className={`${inputClass} truncate`}
+          >
             {vendors.map(v => <option key={v} value={v}>{v}</option>)}
           </select>
           {row.vendor === 'Other' && (
-            <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={inputClass} />
+            <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={`${inputClass} mt-1.5`} />
           )}
         </div>
-        <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-        <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-        <div className="text-right pr-1">
+
+        {/* Price + Users side-by-side on mobile/tablet, separate cols on desktop */}
+        <div className="grid grid-cols-2 gap-2 xl:contents">
+          <div>
+            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block xl:hidden">Price/User/Mo</label>
+            <input
+              type="text"
+              inputMode="decimal"
+              placeholder="0.00"
+              value={row.priceMonth}
+              onChange={e => onChange({ ...row, priceMonth: e.target.value })}
+              className={`${inputClass} text-right tabular-nums`}
+            />
+          </div>
+          <div>
+            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block xl:hidden">Users</label>
+            <input
+              type="text"
+              inputMode="numeric"
+              placeholder="0"
+              value={row.users}
+              onChange={e => onChange({ ...row, users: e.target.value })}
+              className={`${inputClass} text-right tabular-nums`}
+            />
+          </div>
+        </div>
+
+        {/* Annual total — desktop grid only (mobile/tablet show in header above) */}
+        <div className="hidden xl:block text-right pr-1">
           <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
           <div className="text-[0.7rem] text-[#64748b]">annual spend</div>
         </div>
-        <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[38px] max-h-[100px]`} />
-      </div>
 
-      {/* ── Tablet: 2-column card (md–xl) ── */}
-      <div className="hidden md:block xl:hidden">
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-bold text-[#1e3a6e]">{formatCategory(row.category)}</div>
-          <div className="text-right">
-            <div className="text-sm font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
-            <div className="text-[0.65rem] text-[#64748b]">annual spend</div>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Vendor / App</label>
-            <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={`${inputClass} truncate`}>
-              {vendors.map(v => <option key={v} value={v}>{v}</option>)}
-            </select>
-            {row.vendor === 'Other' && (
-              <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={`${inputClass} mt-1.5`} />
-            )}
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">$/User/Mo</label>
-              <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-            </div>
-            <div>
-              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Users</label>
-              <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-            </div>
-          </div>
-        </div>
-        <div className="mt-2">
-          <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[36px] max-h-[80px]`} />
-        </div>
-      </div>
-
-      {/* ── Mobile: stacked card (<md) ── */}
-      <div className="md:hidden">
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-bold text-[#1e3a6e]">{formatCategory(row.category)}</div>
-          <div className="text-right">
-            <div className="text-base font-extrabold text-[#1e3a6e] tabular-nums">{money(annualized)}</div>
-            <div className="text-[0.65rem] text-[#64748b]">annual spend</div>
-          </div>
-        </div>
-        <div className="space-y-2">
-          <div>
-            <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Vendor / App</label>
-            <select value={row.vendor} onChange={e => onChange({ ...row, vendor: e.target.value, otherVendor: e.target.value === 'Other' ? row.otherVendor : '' })} className={inputClass}>
-              {vendors.map(v => <option key={v} value={v}>{v}</option>)}
-            </select>
-            {row.vendor === 'Other' && (
-              <input type="text" placeholder="Type vendor/app..." value={row.otherVendor || ''} onChange={e => onChange({ ...row, otherVendor: e.target.value })} className={`${inputClass} mt-1.5`} />
-            )}
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Price/User/Mo</label>
-              <input type="text" inputMode="decimal" placeholder="0.00" value={row.priceMonth} onChange={e => onChange({ ...row, priceMonth: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-            </div>
-            <div>
-              <label className="text-[0.65rem] font-bold uppercase tracking-wider text-[#64748b] mb-1 block">Users</label>
-              <input type="text" inputMode="numeric" placeholder="0" value={row.users} onChange={e => onChange({ ...row, users: e.target.value })} className={`${inputClass} text-right tabular-nums`} />
-            </div>
-          </div>
-          <div>
-            <textarea placeholder="Notes..." value={row.notes} onChange={e => onChange({ ...row, notes: e.target.value })} rows={1} className={`${inputClass} text-[#64748b] resize-y min-h-[36px] max-h-[80px]`} />
-          </div>
+        {/* Notes — full width on mobile/tablet, last col on desktop */}
+        <div className="md:col-span-2 xl:col-span-1">
+          <textarea
+            placeholder="Notes..."
+            value={row.notes}
+            onChange={e => onChange({ ...row, notes: e.target.value })}
+            rows={1}
+            className={`${inputClass} text-[#64748b] resize-y min-h-[36px] max-h-[80px]`}
+          />
         </div>
       </div>
     </div>
