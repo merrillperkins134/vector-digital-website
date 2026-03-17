@@ -204,30 +204,34 @@ export default function App() {
         </p>
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-xl border border-red-200 bg-[#f4f6f9] p-8">
-            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-red-500">❌ The Big Tech Way</p>
+            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-2">
+              <XCircleIcon className="h-4 w-4" /> The Big Tech Way
+            </p>
             {[
-              ['💸', 'Multiple vendor subscriptions with compounding annual price increases'],
-              ['📞', 'Premium support tiers — pay more just to talk to a human'],
-              ['🔓', "Your data stored on infrastructure you don't own or control"],
-              ['⚠️', 'Compliance gaps that require expensive third-party audits and add-ons'],
-              ['🕸️', "Sprawling tools that don't integrate cleanly — fragmented operations"],
-            ].map(([icon, text]) => (
+              [CurrencyDollarIcon, 'Multiple vendor subscriptions with compounding annual price increases'],
+              [PhoneArrowDownLeftIcon, 'Premium support tiers — pay more just to talk to a human'],
+              [LockClosedIcon, "Your data stored on infrastructure you don't own or control"],
+              [ShieldCheckIcon, 'Compliance gaps that require expensive third-party audits and add-ons'],
+              [GlobeAltIcon, "Sprawling tools that don't integrate cleanly — fragmented operations"],
+            ].map(([Icon, text]) => (
               <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#64748b]">
-                <span className="mt-0.5 shrink-0">{icon}</span><span>{text}</span>
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[#64748b]" /><span>{text}</span>
               </div>
             ))}
           </div>
           <div className="rounded-xl border border-[#1e3a6e]/20 bg-[#f4f6f9] p-8">
-            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-[#1e3a6e]">✦ The Vector Stack Way</p>
+            <p className="mb-5 text-xs font-bold uppercase tracking-wider text-[#1e3a6e] flex items-center gap-2">
+              <ShieldCheckIcon className="h-4 w-4" /> The Vector Stack Way
+            </p>
             {[
-              ['✅', 'One flat, predictable cost — no per-seat surprises or hidden upsells'],
-              ['✅', 'One support line — reach a real engineer, not a tier-1 ticket queue'],
-              ['✅', 'Your data lives in your environment — sovereign, auditable, yours'],
-              ['✅', 'Compliance-aligned architecture built in from day one'],
-              ['✅', 'Fully integrated stack — identity, comms, storage, and security unified'],
-            ].map(([icon, text]) => (
+              [CurrencyDollarIcon, 'One flat, predictable cost — no per-seat surprises or hidden upsells'],
+              [PhoneIcon, 'One support line — reach a real engineer, not a tier-1 ticket queue'],
+              [CloudIcon, 'Your data lives in your environment — sovereign, auditable, yours'],
+              [ShieldCheckIcon, 'Compliance-aligned architecture built in from day one'],
+              [BuildingOfficeIcon, 'Fully integrated stack — identity, comms, storage, and security unified'],
+            ].map(([Icon, text]) => (
               <div key={text} className="mb-3 flex items-start gap-3 text-[0.95rem] text-[#64748b]">
-                <span className="mt-0.5 shrink-0">{icon}</span><span>{text}</span>
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[#1e3a6e]" /><span>{text}</span>
               </div>
             ))}
           </div>
