@@ -87,7 +87,9 @@ export default function App() {
         <div className="px-[6%]">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-8">
-              <img src="/logo.png" alt="Vector Digital" className="h-14 w-auto shrink-0" />
+              <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }} className="shrink-0">
+                <img src="/logo.png" alt="Vector Digital" className="h-14 w-auto cursor-pointer" />
+              </a>
               <div className="hidden md:flex items-center gap-1">
                 {navLinks.map(item => (
                   <a key={item.name} href={item.href}
