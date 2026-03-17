@@ -1,5 +1,13 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  Bars3Icon, XMarkIcon,
+  LockClosedIcon, KeyIcon, GlobeAltIcon, CloudIcon,
+  DocumentTextIcon, DocumentDuplicateIcon, BuildingOfficeIcon, EnvelopeIcon,
+  ChatBubbleLeftRightIcon, PencilSquareIcon, ClipboardDocumentListIcon, BookOpenIcon,
+  AcademicCapIcon, ShieldCheckIcon, CpuChipIcon, ComputerDesktopIcon,
+  PhoneIcon, LightBulbIcon, CurrencyDollarIcon,
+  XCircleIcon, PhoneArrowDownLeftIcon,
+} from '@heroicons/react/24/outline'
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
@@ -13,22 +21,22 @@ const navLinks = [
 const complianceTags = ['HIPAA', 'FERPA', 'GLBA', 'SOC 2', 'CMMC']
 
 const stackItems = [
-  { icon: '🔐', title: 'Identity & Access Management',   desc: 'Single sign-on, authentication gateway, and identity provider for your entire environment.',                        tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '🔑', title: 'Password Management',            desc: 'Secure, self-hosted credential vault for your team — no third-party cloud storage.',                                 tags: [{ label: 'Sovereign', type: 's' }, { label: 'GLBA', type: 'c' }] },
-  { icon: '🌐', title: 'Private VPN & Network Access',   desc: 'Mesh-based private networking so your team connects securely from anywhere.',                                         tags: [{ label: 'Sovereign', type: 's' }, { label: 'CMMC', type: 'c' }] },
-  { icon: '☁️', title: 'Cloud Workspace & File Storage', desc: 'Your Google Drive replacement — file sync, sharing, and collaboration under your control.',                          tags: [{ label: 'HIPAA', type: 'c' }, { label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '📄', title: 'Office Suite',                   desc: 'Documents, spreadsheets, and presentations — fully compatible with Microsoft formats.',                               tags: [{ label: 'Sovereign', type: 's' }] },
-  { icon: '📑', title: 'PDF Utility',                    desc: 'Convert, merge, sign, and manipulate PDFs without sending documents to external services.',                            tags: [{ label: 'Sovereign', type: 's' }, { label: 'HIPAA', type: 'c' }] },
-  { icon: '🏢', title: 'ERP & Business Management',      desc: 'Finance, HR, CRM, inventory and operations — all in one integrated business platform.',                               tags: [{ label: 'GLBA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '📧', title: 'Email & Calendar',               desc: 'Secure, self-hosted email and calendar to replace Google Workspace or Microsoft 365 mail.',                          tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '💬', title: 'Messaging & Video Conferencing', desc: 'Encrypted team chat and video calls — your Slack and Zoom replacement.',                                             tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '✍️', title: 'Digital Signature Management',   desc: "Legally binding e-signatures hosted in your environment — not DocuSign's servers.",                                  tags: [{ label: 'GLBA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '📋', title: 'Project Management',             desc: 'Kanban boards and task tracking built directly into your workspace environment.',                                     tags: [{ label: 'Sovereign', type: 's' }] },
-  { icon: '📝', title: 'Note-Taking & Knowledge Base',   desc: 'Collaborative notes and internal documentation — your Notion alternative.',                                           tags: [{ label: 'Sovereign', type: 's' }] },
-  { icon: '🎓', title: 'Learning Management System',     desc: 'Full LMS for staff training, compliance education, and course delivery.',                                             tags: [{ label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '🛡️', title: '24/7 Security Monitoring & EDR', desc: 'Continuous threat detection, vulnerability scanning, endpoint security, and incident response.',                     tags: [{ label: 'HIPAA', type: 'c' }, { label: 'CMMC', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '🤖', title: 'Private AI Assistant',           desc: 'AI chat powered by leading models — hosted privately so your prompts and data never leave your environment.',         tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
-  { icon: '🌍', title: 'Web Design & UI/UX Toolkit',     desc: 'Build and manage your web presence with professional design tools, fully hosted.',                                   tags: [{ label: 'Sovereign', type: 's' }] },
+  { Icon: LockClosedIcon,              title: 'Identity & Access Management',   desc: 'Single sign-on, authentication gateway, and identity provider for your entire environment.',                        tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: KeyIcon,                     title: 'Password Management',            desc: 'Secure, self-hosted credential vault for your team — no third-party cloud storage.',                                 tags: [{ label: 'Sovereign', type: 's' }, { label: 'GLBA', type: 'c' }] },
+  { Icon: GlobeAltIcon,                title: 'Private VPN & Network Access',   desc: 'Mesh-based private networking so your team connects securely from anywhere.',                                         tags: [{ label: 'Sovereign', type: 's' }, { label: 'CMMC', type: 'c' }] },
+  { Icon: CloudIcon,                   title: 'Cloud Workspace & File Storage', desc: 'Your Google Drive replacement — file sync, sharing, and collaboration under your control.',                          tags: [{ label: 'HIPAA', type: 'c' }, { label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: DocumentTextIcon,            title: 'Office Suite',                   desc: 'Documents, spreadsheets, and presentations — fully compatible with Microsoft formats.',                               tags: [{ label: 'Sovereign', type: 's' }] },
+  { Icon: DocumentDuplicateIcon,       title: 'PDF Utility',                    desc: 'Convert, merge, sign, and manipulate PDFs without sending documents to external services.',                            tags: [{ label: 'Sovereign', type: 's' }, { label: 'HIPAA', type: 'c' }] },
+  { Icon: BuildingOfficeIcon,          title: 'ERP & Business Management',      desc: 'Finance, HR, CRM, inventory and operations — all in one integrated business platform.',                               tags: [{ label: 'GLBA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: EnvelopeIcon,                title: 'Email & Calendar',               desc: 'Secure, self-hosted email and calendar to replace Google Workspace or Microsoft 365 mail.',                          tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: ChatBubbleLeftRightIcon,     title: 'Messaging & Video Conferencing', desc: 'Encrypted team chat and video calls — your Slack and Zoom replacement.',                                             tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: PencilSquareIcon,            title: 'Digital Signature Management',   desc: "Legally binding e-signatures hosted in your environment — not DocuSign's servers.",                                  tags: [{ label: 'GLBA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: ClipboardDocumentListIcon,   title: 'Project Management',             desc: 'Kanban boards and task tracking built directly into your workspace environment.',                                     tags: [{ label: 'Sovereign', type: 's' }] },
+  { Icon: BookOpenIcon,                title: 'Note-Taking & Knowledge Base',   desc: 'Collaborative notes and internal documentation — your Notion alternative.',                                           tags: [{ label: 'Sovereign', type: 's' }] },
+  { Icon: AcademicCapIcon,             title: 'Learning Management System',     desc: 'Full LMS for staff training, compliance education, and course delivery.',                                             tags: [{ label: 'FERPA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: ShieldCheckIcon,             title: '24/7 Security Monitoring & EDR', desc: 'Continuous threat detection, vulnerability scanning, endpoint security, and incident response.',                     tags: [{ label: 'HIPAA', type: 'c' }, { label: 'CMMC', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: CpuChipIcon,                 title: 'Private AI Assistant',           desc: 'AI chat powered by leading models — hosted privately so your prompts and data never leave your environment.',         tags: [{ label: 'HIPAA', type: 'c' }, { label: 'Sovereign', type: 's' }] },
+  { Icon: ComputerDesktopIcon,         title: 'Web Design & UI/UX Toolkit',     desc: 'Build and manage your web presence with professional design tools, fully hosted.',                                   tags: [{ label: 'Sovereign', type: 's' }] },
 ]
 
 const comparisonRows = [
@@ -239,7 +247,7 @@ export default function App() {
           {stackItems.map(item => (
             <div key={item.title}
               className="rounded-xl border border-[#d9e2ef] bg-white p-6 transition-all hover:border-[#1e3a6e] hover:shadow-md hover:-translate-y-0.5">
-              <div className="mb-3 text-3xl">{item.icon}</div>
+              <div className="mb-3"><item.Icon className="h-7 w-7 text-[#1e3a6e]" /></div>
               <h3 className="mb-2 text-[0.95rem] font-bold text-[#1e3a6e]">{item.title}</h3>
               <p className="mb-3 text-[0.82rem] leading-relaxed text-[#64748b]">{item.desc}</p>
               <div className="flex flex-wrap gap-1.5">
@@ -294,13 +302,13 @@ export default function App() {
             </p>
             <div className="flex flex-col gap-5">
               {[
-                ['📞', 'No Ticket Queues',            'Direct access to support, no tiered escalation systems to navigate.'],
-                ['🧠', 'Engineers Who Know Your Stack', 'We built your environment — we know exactly how to fix it.'],
-                ['💰', 'No Premium Support Upsells',   "Support is included. We don't charge more for you to talk to a human."],
-              ].map(([icon, title, desc]) => (
+                [PhoneIcon,       'No Ticket Queues',            'Direct access to support, no tiered escalation systems to navigate.'],
+                [LightBulbIcon,   'Engineers Who Know Your Stack', 'We built your environment — we know exactly how to fix it.'],
+                [CurrencyDollarIcon, 'No Premium Support Upsells', "Support is included. We don't charge more for you to talk to a human."],
+              ].map(([Icon, title, desc]) => (
                 <div key={title} className="flex items-start gap-4">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d9e2ef] bg-white text-base shadow-sm">
-                    {icon}
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#d9e2ef] bg-white shadow-sm">
+                    <Icon className="h-5 w-5 text-[#1e3a6e]" />
                   </div>
                   <div>
                     <h4 className="mb-0.5 text-[0.95rem] font-bold text-[#1e3a6e]">{title}</h4>
