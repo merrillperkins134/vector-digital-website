@@ -11,12 +11,23 @@
     <meta name="author" content="Vector Digital, Inc." />
     <link rel="canonical" href="https://vectordigital.io/" />
 
+    <!-- Preconnect / DNS Prefetch -->
+    <link rel="preconnect" href="https://cal.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cal.com" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1e3a6e" />
+    <meta name="msapplication-TileColor" content="#1e3a6e" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vectordigital.io/" />
     <meta property="og:title" content="Vector Digital — One Sovereign Cloud Stack" />
     <meta property="og:description" content="Replace 10+ vendor subscriptions with one integrated, compliance-ready platform. Your data, your infrastructure, your rules." />
     <meta property="og:image" content="https://vectordigital.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vector Digital — One Sovereign Cloud Stack for Compliance-Ready Organizations" />
     <meta property="og:site_name" content="Vector Digital" />
     <meta property="og:locale" content="en_US" />
 
@@ -26,6 +37,7 @@
     <meta name="twitter:title" content="Vector Digital — One Sovereign Cloud Stack" />
     <meta name="twitter:description" content="Replace 10+ vendor subscriptions with one integrated, compliance-ready platform. Your data, your infrastructure, your rules." />
     <meta name="twitter:image" content="https://vectordigital.io/og-image.png" />
+    <meta name="twitter:image:alt" content="Vector Digital — One Sovereign Cloud Stack for Compliance-Ready Organizations" />
 
     <!-- Robots & Indexing -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -76,9 +88,66 @@
       }
     }
     </script>
+    <!-- FAQ Structured Data (rich results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Vector Stack replace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vector Stack replaces Google Workspace, Microsoft 365, and 10+ other vendor subscriptions with one integrated platform covering identity, email, messaging, storage, office suite, ERP, CRM, project management, digital signatures, AI, security monitoring, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What compliance frameworks does Vector Stack support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vector Stack is built to support HIPAA, FERPA, GLBA, SOC 2, and CMMC compliance from day one. Compliance-aligned architecture is built in rather than retrofitted with add-ons."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Vector Digital pricing work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vector Digital offers one flat, predictable cost with no per-seat surprises or hidden upsells. Support is included at no additional charge — you never pay more to talk to a human."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored with Vector Stack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your data lives in your environment — sovereign, auditable, and fully under your control. Unlike Google or Microsoft, you own the infrastructure your data sits on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get support from Vector Digital?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vector Digital provides one support line where you reach a real engineer who knows your environment. There are no ticket queues, no tiered escalation systems, and no premium support upsells."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;text-align:center;font-family:system-ui,sans-serif">
+        <h1>Vector Digital</h1>
+        <p>A complete, sovereign cloud stack that replaces Google Workspace, Microsoft 365, and a dozen other vendor subscriptions with one integrated platform.</p>
+        <p>Please enable JavaScript to use the full site experience.</p>
+        <p><a href="https://cal.com/kmperkins85/vector-digital">Book a Call</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

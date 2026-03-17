@@ -83,7 +83,8 @@ export default function App() {
     <div className="min-h-screen">
 
       {/* ── NAV ── */}
-      <Disclosure as="nav" className="sticky top-0 z-50 bg-[#1e3a6e] border-b border-white/10">
+      <Disclosure as="header" className="sticky top-0 z-50 bg-[#1e3a6e] border-b border-white/10" role="banner">
+        <nav aria-label="Main navigation">
         <div className="px-[6%]">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center gap-8">
@@ -99,7 +100,7 @@ export default function App() {
                 ))}
               </div>
             </div>
-            <a href="https://cal.com/kmperkins85/vector-digital"
+            <a href="https://cal.com/kmperkins85/vector-digital" rel="noopener noreferrer" target="_blank"
               className="hidden md:inline-flex bg-white hover:bg-[#f0f4f9] text-[#1e3a6e] px-5 py-2.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap">
               Book a Call
             </a>
@@ -119,16 +120,18 @@ export default function App() {
                 {item.name}
               </DisclosureButton>
             ))}
-            <a href="https://cal.com/kmperkins85/vector-digital"
+            <a href="https://cal.com/kmperkins85/vector-digital" rel="noopener noreferrer" target="_blank"
               className="block mt-2 bg-white hover:bg-[#f0f4f9] text-[#1e3a6e] px-4 py-2.5 rounded-md text-base font-bold text-center transition-colors">
               Book a Call
             </a>
           </div>
         </DisclosurePanel>
+        </nav>
       </Disclosure>
 
+      <main>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-24 pb-16">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] pt-24 pb-16" id="home" aria-label="Introduction to Vector Stack">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(30,58,110,0.06),transparent_70%)]" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
@@ -144,7 +147,7 @@ export default function App() {
               A complete, sovereign cloud stack that replaces Google Workspace, Microsoft 365, and a dozen other vendor subscriptions with one integrated platform, one bill, and one support line.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://cal.com/kmperkins85/vector-digital"
+              <a href="https://cal.com/kmperkins85/vector-digital" rel="noopener noreferrer" target="_blank"
                 className="inline-block rounded-lg bg-[#1e3a6e] px-8 py-3 text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
                 See How It Works
               </a>
@@ -198,7 +201,7 @@ export default function App() {
       </div>
 
       {/* ── PROBLEM ── */}
-      <section className="bg-white px-[6%] py-20">
+      <section className="bg-white px-[6%] py-20" id="problem" aria-label="The problem with Big Tech vendors">
         <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">The Problem</p>
         <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
           Big Tech wasn't built for your compliance requirements.
@@ -243,7 +246,7 @@ export default function App() {
       </section>
 
       {/* ── STACK ── */}
-      <section className="bg-[#f4f6f9] px-[6%] py-20" id="stack">
+      <section className="bg-[#f4f6f9] px-[6%] py-20" id="stack" aria-label="The Vector Stack platform">
         <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">The Stack</p>
         <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">
           Everything your organization needs. Nothing you don't.
@@ -267,7 +270,7 @@ export default function App() {
       </section>
 
       {/* ── COMPARISON ── */}
-      <section className="bg-white px-[6%] py-20" id="compare">
+      <section className="bg-white px-[6%] py-20" id="compare" aria-label="Comparison with Google Workspace and Microsoft 365">
         <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">How We Compare</p>
         <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#1e3a6e] md:text-4xl">Vector Stack vs. Big Tech</h2>
         <p className="mb-12 max-w-xl text-lg text-[#64748b]">
@@ -301,7 +304,7 @@ export default function App() {
       <CostAnalysisTool />
 
       {/* ── SUPPORT ── */}
-      <section className="bg-[#f4f6f9] px-[6%] py-20" id="support">
+      <section className="bg-[#f4f6f9] px-[6%] py-20" id="support" aria-label="Direct engineering support">
         <div className="grid items-center gap-16 md:grid-cols-2">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-widest text-[#1e3a6e]">One Support Line</p>
@@ -345,7 +348,7 @@ export default function App() {
       </section>
 
       {/* ── COMPLIANCE ── */}
-      <section className="bg-[#e8eef5] px-[6%] py-20" id="compliance">
+      <section className="bg-[#e8eef5] px-[6%] py-20" id="compliance" aria-label="Compliance frameworks and certifications">
         <div className="mx-auto max-w-6xl">
           <div className="grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
@@ -383,7 +386,7 @@ export default function App() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] py-24">
+      <section className="relative overflow-hidden bg-[#f4f6f9] px-[6%] py-24" id="get-started" aria-label="Get started with Vector Digital">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_100%,rgba(30,58,110,0.06),transparent_70%)]" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
           <div>
@@ -424,7 +427,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <a href="https://cal.com/kmperkins85/vector-digital"
+            <a href="https://cal.com/kmperkins85/vector-digital" rel="noopener noreferrer" target="_blank"
               className="mt-8 inline-block w-full rounded-lg bg-[#1e3a6e] px-8 py-3 text-center text-base font-bold text-white transition-all hover:bg-[#163060] hover:-translate-y-px">
               Book a Free Call →
             </a>
@@ -432,14 +435,16 @@ export default function App() {
         </div>
       </section>
 
+      </main>
+
       {/* ── FOOTER ── */}
-      <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 bg-[#1e3a6e] px-[6%] py-6 text-sm text-white/60">
+      <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 bg-[#1e3a6e] px-[6%] py-6 text-sm text-white/60" role="contentinfo">
         <div>© 2026 Vector Digital, Inc. All rights reserved.</div>
-        <div className="flex gap-6">
-          <a href="https://vectordigital.io"                 className="hover:text-white transition-colors">vectordigital.io</a>
-          <a href="https://x.com/VectorDigital21"            className="hover:text-white transition-colors">Twitter</a>
-          <a href="https://www.instagram.com/vectordigital21" className="hover:text-white transition-colors">Instagram</a>
-        </div>
+        <nav aria-label="Footer links" className="flex gap-6">
+          <a href="https://vectordigital.io"                  className="hover:text-white transition-colors">vectordigital.io</a>
+          <a href="https://x.com/VectorDigital21"             rel="noopener noreferrer" target="_blank" className="hover:text-white transition-colors">Twitter</a>
+          <a href="https://www.instagram.com/vectordigital21" rel="noopener noreferrer" target="_blank" className="hover:text-white transition-colors">Instagram</a>
+        </nav>
       </footer>
 
     </div>
