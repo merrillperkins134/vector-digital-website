@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 // ── Data ────────────────────────────────────────────────────────────────────
 
 const navLinks = [
-  { name: 'The Stack',  href: '#stack' },
+  { name: 'VectorStack',  href: '#stack' },
   { name: 'Compare',    href: '#compare' },
   { name: 'Compliance', href: '#compliance' },
   { name: 'Support',    href: '#support' },
